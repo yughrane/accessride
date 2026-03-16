@@ -184,6 +184,13 @@
   #toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--bg);padding:10px 20px;border-radius:24px;font-size:13px;font-weight:500;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;z-index:9999;white-space:nowrap}
   #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
   .high-contrast{filter:contrast(1.35) saturate(0)}
+  .reduce-motion *,
+  .reduce-motion *::before,
+  .reduce-motion *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
   .mode-card:nth-child(1){animation-delay:.05s}.mode-card:nth-child(2){animation-delay:.1s}
   .mode-card:nth-child(3){animation-delay:.15s}.mode-card:nth-child(4){animation-delay:.2s}
   .mode-card:nth-child(5){animation-delay:.25s}.mode-card:nth-child(6){animation-delay:.3s}
@@ -1336,7 +1343,7 @@ function toggleContrast(silent){
 }
 function toggleMotion(silent){
   state.reduceMotion=!state.reduceMotion;
-  document.body.style.setProperty('--transition',state.reduceMotion?'0s':'0.25s cubic-bezier(0.4,0,0.2,1)');
+  document.body.classList.toggle('reduce-motion', state.reduceMotion);
   document.getElementById('toggleMotionBtn').classList.toggle('active',state.reduceMotion);
   document.getElementById('toggleMotionBtn').setAttribute('aria-pressed',state.reduceMotion);
   if(!silent) showToast(state.reduceMotion?'🎭 Reduced motion on':'🎭 Animations on');
