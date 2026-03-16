@@ -830,8 +830,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById(id).addEventListener('keydown', e => { if(e.key==='Enter') findRoutes(); })
   );
 
-  if (window.matchMedia('(prefers-color-scheme:dark)').matches)    toggleDark(true);
-  if (window.matchMedia('(prefers-reduced-motion:reduce)').matches) toggleMotion(true);
+  if (window.matchMedia('(prefers-reduced-motion:reduce)').matches) { state.reduceMotion=true; document.body.classList.add('reduce-motion'); document.getElementById('toggleMotionBtn').classList.add('active'); document.getElementById('toggleMotionBtn').setAttribute('aria-pressed','true'); }
 
   document.getElementById('voiceSrcBtn').addEventListener('click', () => startVoice('source'));
   document.getElementById('voiceDstBtn').addEventListener('click', () => startVoice('destination'));
