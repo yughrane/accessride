@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/accessride/:path*",
+      "destination": "https://accessride.vercel.app/:path*"
+    }
+  ]
+}
